@@ -148,7 +148,7 @@ Exit
 ---
 ## Documentation
 A detailed project documentation PDF is included in this repository:  
-[College_Management_System.pdf](./College_Management_System.pdf)  
+[College Management System.pdf](./College Management System.pdf)  
 
 It contains the introduction, abstract, tools used, step-by-step project building process, and conclusion. Please refer to it for complete understanding and setup.
 
