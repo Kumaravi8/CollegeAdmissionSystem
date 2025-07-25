@@ -29,6 +29,32 @@ public class StudentDAOImpl implements StudentDAO {
 			return false;
 		}
 	}
+	@Override
+	public Student getStudentByEmail(String email) {
+	    String sql = "SELECT * FROM students WHERE email = ?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
+	         
+	        ps.setString(1, email);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            Student student = new Student();
+	            student.setStudentId(rs.getInt("student_id"));
+	            student.setName(rs.getString("name"));
+	            student.setDob(rs.getDate("dob"));
+	            student.setEmail(rs.getString("email"));
+	            student.setPhone(rs.getString("phone"));
+	            student.setCourseId(rs.getInt("course_id"));
+	            student.setAdmissionStatus(rs.getString("admission_status"));
+	            return student;
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null;  // if not found
+	}
 
 	@Override
 	public Student getStudentById(int studentId) {

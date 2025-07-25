@@ -13,4 +13,6 @@ public interface ApplicationDAO {
 	boolean updateApplication(Application application);
 
 	boolean deleteApplication(int applicationId);
+	
+	List<Application> getMeritList(int cutoffMarks);
 }

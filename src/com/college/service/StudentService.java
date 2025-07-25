@@ -8,6 +8,8 @@ public interface StudentService {
 
 	Student getStudentById(int studentId);
 
+	 Student getStudentByEmail(String email);
+	 
 	List<Student> getAllStudents();
 
 	boolean updateStudent(Student student);

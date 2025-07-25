@@ -2,18 +2,18 @@ package com.college.controller;
 
 import com.college.model.*;
 import com.college.service.*;
+import com.college.util.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
 public class AdmissionController {
 
 	private StudentService studentService = new StudentServiceImpl();
 	private CourseService courseService = new CourseServiceImpl();
 	private ApplicationService applicationService = new ApplicationServiceImpl();
-
+    private CSVUtility csvUtility;
 	private Scanner sc = new Scanner(System.in);
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -36,6 +36,10 @@ public class AdmissionController {
 			System.out.println("13. View All Applications");
 			System.out.println("14. Update Application");
 			System.out.println("15. Delete Application");
+			System.out.println("16. View Merit List by Marks Cutoff");
+			System.out.println("17. Import Students from CSV");
+			System.out.println("18. Export Students to CSV");
+
 			System.out.println("0. Exit");
 			System.out.print("Enter choice: ");
 
@@ -88,6 +92,22 @@ public class AdmissionController {
 			case 15:
 				deleteApplication();
 				break;
+			case 16:
+					viewMeritList();
+					break;
+					
+			case 17:
+			    System.out.print("Enter CSV file path to import: ");
+			    String importPath = sc.nextLine();
+			    csvUtility.importStudents(importPath);
+			    break;
+
+			case 18:
+			    System.out.print("Enter CSV file path to export: ");
+			    String exportPath = sc.nextLine();
+			    csvUtility.exportStudents(exportPath);
+			    break;
+		
 			case 0:
 				System.out.println("Exiting...");
 				break;
@@ -113,7 +133,13 @@ public class AdmissionController {
 
 			System.out.print("Enter email: ");
 			String email = sc.nextLine();
-
+             
+			  Student existing = studentService.getStudentByEmail(email);
+		        if (existing != null) {
+		            System.out.println("Email already registered. Use a different email or update existing student.");
+		            return;  // stop here if duplicate email found
+		        }
+			
 			System.out.print("Enter phone: ");
 			String phone = sc.nextLine();
 
@@ -347,31 +373,41 @@ public class AdmissionController {
 	// --- Application methods ---
 
 	private void addApplication() {
-		try {
-			System.out.print("Enter student ID: ");
-			int studentId = sc.nextInt();
-			sc.nextLine();
+	    try {
+	        System.out.print("Enter student ID: ");
+	        int studentId = sc.nextInt();
+	        sc.nextLine();
 
-			System.out.print("Enter course ID: ");
-			int courseId = sc.nextInt();
-			sc.nextLine();
+	        System.out.print("Enter course ID: ");
+	        int courseId = sc.nextInt();
+	        sc.nextLine();
 
-			System.out.print("Enter application date (dd-MM-yyyy): ");
-			Date appDate = sdf.parse(sc.nextLine());
+	        System.out.print("Enter application date (dd-MM-yyyy): ");
+	        Date appDate = sdf.parse(sc.nextLine());
 
-			System.out.print("Enter status (Pending/Approved/Rejected): ");
-			String status = sc.nextLine();
+	        System.out.print("Enter status (Pending/Approved/Rejected): ");
+	        String status = sc.nextLine();
 
-			Application app = new Application(0, studentId, courseId, appDate, status);
-			boolean inserted = applicationService.addApplication(app);
-			if (inserted)
-				System.out.println("Application added successfully!");
-			else
-				System.out.println("Failed to add application.");
+	        System.out.print("Enter marks: ");
+	        int marks = sc.nextInt();
 
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-		}
+	        // ✅ Set all fields into object
+	        Application app = new Application();
+	        app.setStudentId(studentId);
+	        app.setCourseId(courseId);
+	        app.setApplicationDate(appDate);
+	        app.setStatus(status);
+	        app.setMarks(marks);
+
+	        boolean inserted = applicationService.addApplication(app);
+	        if (inserted)
+	            System.out.println("Application added successfully!");
+	        else
+	            System.out.println("Failed to add application.");
+
+	    } catch (Exception e) {
+	        System.out.println("Error: " + e.getMessage());
+	    }
 	}
 
 	private void viewApplicationById() {
@@ -462,4 +498,38 @@ public class AdmissionController {
 		else
 			System.out.println("Failed to delete application or application not found.");
 	}
+	private void viewMeritList() {
+	    try {
+	        System.out.print("Enter cutoff marks: ");
+	        int cutoff = sc.nextInt();
+	        sc.nextLine();
+
+	        List<Application> meritList = applicationService.getMeritList(cutoff);
+
+	        if (meritList.isEmpty()) {
+	            System.out.println("No applications found with marks >= " + cutoff);
+	        } else {
+	            System.out.println("Merit List (Applications with marks >= " + cutoff + "):");
+	            for (Application app : meritList) {
+	                System.out.println("------------------------");
+	                System.out.println("Application ID: " + app.getApplicationId());
+	                System.out.println("Student ID: " + app.getStudentId());
+	                System.out.println("Course ID: " + app.getCourseId());
+	                System.out.println("Marks: " + app.getMarks());
+	                System.out.println("Status: " + app.getStatus());
+	                System.out.println("Application Date: " + sdf.format(app.getApplicationDate()));
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.out.println("Error: " + e.getMessage());
+	    }
+	}
+	
+
+	public AdmissionController() {
+	    csvUtility = new CSVUtility(studentService);
+	}
+
+
+
 }

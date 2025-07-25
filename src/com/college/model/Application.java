@@ -7,17 +7,18 @@ public class Application {
 	private int studentId;
 	private int courseId;
 	private Date applicationDate;
-	private String status; // e.g., "Pending", "Approved", "Rejected"
-
+	private String status; 
+    private int marks;
 	public Application() {
 	}
 
-	public Application(int applicationId, int studentId, int courseId, Date applicationDate, String status) {
+	public Application(int applicationId, int studentId, int courseId, Date applicationDate, String status,int marks) {
 		this.applicationId = applicationId;
 		this.studentId = studentId;
 		this.courseId = courseId;
 		this.applicationDate = applicationDate;
 		this.status = status;
+		this.marks=marks;
 	}
 
 	// Getters and Setters
@@ -60,5 +61,11 @@ public class Application {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public int getMarks() {
+		return marks;
+	}
+	public void setMarks(int marks) {
+		this.marks=marks;
 	}
 }

@@ -1,5 +1,5 @@
 package com.college.service;
-
+import java.util.*;
 import com.college.dao.ApplicationDAO;
 import com.college.dao.ApplicationDAOImpl;
 import com.college.model.Application;
@@ -35,4 +35,22 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public boolean deleteApplication(int applicationId) {
 		return applicationDAO.deleteApplication(applicationId);
 	}
-}
+	 @Override
+	    public List<Application> getMeritList(int cutoffMarks) {
+	        
+	        List<Application> allApplications = applicationDAO.getAllApplications();
+	        List<Application> meritList = new ArrayList<>();
+
+	       
+	        for (Application app : allApplications) {
+	           
+	            
+	            if (app.getMarks() >= cutoffMarks) {
+	                meritList.add(app);
+	            }
+	        }
+	        return meritList;
+	    }
+	 
+	}
+

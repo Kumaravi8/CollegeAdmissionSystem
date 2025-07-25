@@ -15,7 +15,10 @@ public class StudentServiceImpl implements StudentService {
 		// Business logic if needed before insert
 		return studentDAO.insertStudent(student);
 	}
-
+	@Override
+	public Student getStudentByEmail(String email) {
+	    return studentDAO.getStudentByEmail(email);
+	}
 	@Override
 	public Student getStudentById(int studentId) {
 		return studentDAO.getStudentById(studentId);
