@@ -1,11 +1,12 @@
-College Admission Management System
-Overview
+#College Admission Management System
+
+##Overview
 College Admission Management System is a Java-based console application designed to manage students, courses, and admission applications efficiently.
 It supports CRUD operations and provides functionalities such as merit list generation and CSV import/export of student data.
 
 This project was developed as part of an internship at Elevate Labs and demonstrates key concepts of object-oriented programming, database interaction, and file handling.
 
-Folder Structure
+###Folder Structure
 
 src/
 └── com/
@@ -39,7 +40,7 @@ src/
         └── util/
             ├── CSVUtility.java
             └── DBConnection.java
-Features
+###Features
 Add, View, Update, Delete Students
 
 Add, View, Update, Delete Courses
@@ -89,7 +90,7 @@ Run com.college.main.AppLauncher as a Java Application.
 Use the Console Menu
 Follow on-screen instructions to perform operations like adding students, courses, applications, importing/exporting CSV, and generating merit lists.
 
-Sample Menu Options
+###Sample Menu Options
 
 ==== College Admission Management System ====
 1. Add Student
