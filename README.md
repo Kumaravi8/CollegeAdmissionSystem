@@ -146,6 +146,13 @@ Exit
 🛠 Internship Project at **Elevate Labs (2025)**  
 
 ---
+## Documentation
+A detailed project documentation PDF is included in this repository:  
+[College_Management_System.pdf](./College_Management_System.pdf)  
+
+It contains the introduction, abstract, tools used, step-by-step project building process, and conclusion. Please refer to it for complete understanding and setup.
+
+---
 
 ## 📸 Screenshots
 <img width="464" height="822" alt="image" src="https://github.com/user-attachments/assets/42a381cb-feef-465c-b0b3-67a7fdac341a" />
