@@ -6,6 +6,7 @@ It supports CRUD operations and provides functionalities such as merit list gene
 This project was developed as part of an internship at Elevate Labs and demonstrates key concepts of object-oriented programming, database interaction, and file handling.
 
 Folder Structure
+
 src/
 └── com/
     └── college/
@@ -69,24 +70,23 @@ OOP concepts (Encapsulation, Abstraction, Inheritance)
 Console-based user input with Scanner
 
 How to Run
-Setup Database:
+Setup Database
 Create MySQL database named college_db and required tables (students, courses, applications) according to your schema.
 
-Configure Database Connection:
+Configure Database Connection
 Update database credentials and URL in com.college.util.DBConnection.java.
 
-Import Project in Eclipse:
-
+Import Project in Eclipse
 Open Eclipse IDE
 
 Import the project as an existing Java project
 
 Build the project to resolve dependencies
 
-Run Main Class:
+Run Main Class
 Run com.college.main.AppLauncher as a Java Application.
 
-Use the Console Menu:
+Use the Console Menu
 Follow on-screen instructions to perform operations like adding students, courses, applications, importing/exporting CSV, and generating merit lists.
 
 Sample Menu Options
@@ -116,9 +116,8 @@ Abhishek Kumar
 BCA Final Year Student
 Oxford Business College
 Internship Project at Elevate Labs (2025)
-
-<img width="468" height="831" alt="image" src="https://github.com/user-attachments/assets/6ba6a8fe-c5a3-41a5-bdab-d8aef17b0077" />
-<img width="635" height="553" alt="image" src="https://github.com/user-attachments/assets/f023407f-79c5-4281-9aa2-e2d2faf3aa3f" />
-<img width="1211" height="580" alt="image" src="https://github.com/user-attachments/assets/b64de934-4cc8-4540-9727-579b12f56ab5" />
+<img width="464" height="822" alt="image" src="https://github.com/user-attachments/assets/42a381cb-feef-465c-b0b3-67a7fdac341a" />
 
 
+<img width="768" height="626" alt="image" src="https://github.com/user-attachments/assets/2f1a81d8-9736-4b7a-bad8-ee3720f03dfc" />
+<img width="1505" height="729" alt="image" src="https://github.com/user-attachments/assets/ab360aed-1c17-4490-93f6-34ea69b1c728" />
